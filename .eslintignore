@@ -1,0 +1,15 @@
+/scripts
+babel.config.js
+postcss.config.js
+**/node_modules/**
+_scripts
+/lambda/mock/**
+_test_
+webpack.config.js
+mockData.js
+src/utils/jsencrypt.js
+src/assets/**
+src/utils/nativeApi.js
+src/App.vue
+src/vendor/**
+src/store/**

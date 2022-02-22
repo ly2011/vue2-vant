@@ -1,0 +1,76 @@
+{
+  "name": "vue2-vant",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow yarn",
+    "serve": "cross-env environment=local vue-cli-service serve",
+    "build": "cross-env environment=uat vue-cli-service build",
+    "lint": "vue-cli-service lint ./src",
+    "lint:fix": "vue-cli-service lint --fix --ext .js,.jsx,.vue ./src",
+    "prod": "cross-env environment=prod vue-cli-service build",
+    "removecache": "rimraf ./node_modules/.cache"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "dayjs": "^1.8.23",
+    "echarts": "^5.2.0",
+    "fastclick": "^1.0.6",
+    "lodash": "^4.17.15",
+    "qs": "^6.9.2",
+    "vant": "^2.12.26",
+    "vue": "^2.6.11",
+    "vue-fragment": "^1.5.1",
+    "vue-router": "^3.1.6",
+    "vuex": "^3.1.3",
+    "vue-baidu-map": "^0.21.22"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.4.1",
+    "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-service": "~4.4.1",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-import": "^1.12.0",
+    "babel-plugin-lodash": "^3.3.4",
+    "copy-webpack-plugin": "^5.1.1",
+    "cross-env": "^6.0.3",
+    "cssnano": "^4.1.10",
+    "cssnano-preset-advanced": "^4.0.7",
+    "eslint": "^6.7.2",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "lint-staged": "^8.1.5",
+    "lodash-webpack-plugin": "^0.11.5",
+    "postcss-aspect-ratio-mini": "^1.0.1",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-px-to-viewport": "^1.1.0",
+    "postcss-url": "^8.0.0",
+    "postcss-viewport-units": "^0.1.6",
+    "postcss-write-svg": "^3.0.1",
+    "rimraf": "^2.6.3",
+    "style-resources-loader": "^1.2.1",
+    "vconsole-webpack-plugin": "^1.5.1",
+    "vue-cli-plugin-style-resources-loader": "~0.1.4",
+    "vue-template-compiler": "^2.6.11",
+    "zip-webpack-plugin": "^3.0.0"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "vue-cli-service lint ./src",
+      "git add"
+    ]
+  }
+}

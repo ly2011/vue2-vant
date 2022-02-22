@@ -1,0 +1,74 @@
+@import './var.less';
+
+// @common-title: #222;
+
+.page-list {
+  .item-padding {
+    padding: 32px;
+  }
+  .title {
+    font-size: @font-size-big;
+    color: @black;
+    font-weight: 500;
+    & + .date {
+      margin-top: 12px;
+    }
+  }
+  .sub-title {
+    font-size: @font-size-normal;
+    color: @gray-deep;
+  }
+  .paragraph {
+    margin-bottom: 10px;
+    font-size: @font-size-normal;
+    line-height: 1.2;
+    color: @black;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .date {
+    font-size: @font-size-small;
+    color: @gray-deep;
+  }
+}
+
+// 城服详情页面标题公共样式
+.page-content-cf{
+  background: @bg-task;
+  .titleInfo {
+    background: @bg-home;
+    border-radius: 10px;
+    margin: 16px;
+  }
+}
+
+// 城服详情页面折叠页公共样式
+.basic-info-cf {
+  margin-bottom: 96px;
+  .info-wrapper-cf {
+    .van-collapse-item__content {
+      padding-top: 0;
+      padding-bottom: 0
+    }
+    .van-field__control {
+      text-align: right;
+  
+      * {
+        text-align: right;
+      }
+  
+      .static-text{
+        width: 100%;
+      }
+    }
+  
+    .van-collapse-item__title{
+      background: #f7f9fb;
+      border-bottom: 1px solid #e6eaee
+    }
+  }
+}
+
+
+
