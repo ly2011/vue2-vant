@@ -35,6 +35,6 @@ export default new Router({
       redirect: {
         name: 'home'
       }
-    },
+    }
   ]
 })

@@ -17,7 +17,6 @@ import Vue from 'vue'
 import { mapGetters, mapActions, mapState } from 'vuex'
 import { environment, statusBarColor } from '@/config'
 import nativeApi from '@/utils/nativeApi'
-import { showSysErrMsg } from '@/utils/assist'
 
 export default {
   watch: {
@@ -124,7 +123,6 @@ export default {
       this.changeUser(user)
 
       if (!user) {
-        showSysErrMsg()
         return
       }
 

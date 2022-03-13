@@ -35,11 +35,9 @@
 </template>
 
 <script>
-import IForm from '@/components/basic/form/form'
 
 export default {
   components: {
-    IForm
   },
   data () {
     return {
@@ -58,8 +56,13 @@ export default {
           // 如果图片 URL 中不包含类型信息，可以添加 isImage 标记来声明
           { url: 'https://cloud-image', isImage: true }
         ]
-      },
-      fields: [
+      }
+
+    }
+  },
+  computed: {
+    fields () {
+      const fields = [
         {
           type: 'textarea',
           key: 'name',
@@ -167,6 +170,7 @@ export default {
           }
         }
       ]
+      return fields
     }
   },
   methods: {

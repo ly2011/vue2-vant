@@ -24,6 +24,7 @@ const initAppData = async () => {
   // const user = await nativeApi.getUser()
   // await dispatchFunc('changeUser', user)
   try {
+    Toast.clear()
   } finally {
     Toast.clear()
   }
