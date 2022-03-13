@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "preinstall": "npx only-allow yarn",
     "serve": "cross-env environment=local vue-cli-service serve",
     "build": "cross-env environment=uat vue-cli-service build",
     "lint": "vue-cli-service lint ./src",
     "lint:fix": "vue-cli-service lint --fix --ext .js,.jsx,.vue ./src",
+    "preinstall": "npx only-allow yarn",
+    "commit": "git-cz",
     "prod": "cross-env environment=prod vue-cli-service build",
     "removecache": "rimraf ./node_modules/.cache"
   },
@@ -29,17 +30,25 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.1",
-    "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-plugin-eslint": "~4.5.15",
     "@vue/cli-service": "~4.4.1",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
     "babel-plugin-import": "^1.12.0",
     "babel-plugin-lodash": "^3.3.4",
+    "commitizen": "^4.2.4",
     "copy-webpack-plugin": "^5.1.1",
     "cross-env": "^6.0.3",
     "cssnano": "^4.1.10",
     "cssnano-preset-advanced": "^4.0.7",
+    "eslint": "^6.7.2",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "git-cz": "^4.8.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
-    "lint-staged": "^8.1.5",
+    "lint-staged": "^9.5.0",
     "lodash-webpack-plugin": "^0.11.5",
     "postcss-aspect-ratio-mini": "^1.0.1",
     "postcss-cssnext": "^3.1.0",
@@ -48,6 +57,7 @@
     "postcss-url": "^8.0.0",
     "postcss-viewport-units": "^0.1.6",
     "postcss-write-svg": "^3.0.1",
+    "prettier": "^2.2.1",
     "rimraf": "^2.6.3",
     "style-resources-loader": "^1.2.1",
     "vconsole-webpack-plugin": "^1.5.1",
@@ -55,13 +65,18 @@
     "vue-template-compiler": "^2.6.11",
     "zip-webpack-plugin": "^3.0.0"
   },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,vue}": [
-      "vue-cli-service lint ./src",
-      "git add"
+    "*.{js,jsx,vue}": [
+      "prettier --write",
+      "yarn lint:fix"
     ]
   }
 }
