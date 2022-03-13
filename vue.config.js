@@ -3,7 +3,7 @@ const fs = require('fs')
 const WebpackZipPlugin = require('zip-webpack-plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const VConsolePlugin = require('vconsole-webpack-plugin')
+// const VConsolePlugin = require('vconsole-webpack-plugin')
 const cubeModule = require('./CubeModule.json')
 
 const resolve = dir => path.join(__dirname, dir)
@@ -13,7 +13,7 @@ const environment = process.env.environment
 
 const isDev = NODE_ENV === 'development'
 const isPro = environment === 'prod'
-const isUat = environment === 'uat'
+// const isUat = environment === 'uat'
 const buildEnv = isPro ? 'product' : 'test' // 打包环境只有两种，一种是test,一种是生产
 
 const theme = {
@@ -84,7 +84,7 @@ module.exports = {
       .set('store', resolve('src/store'))
     config.plugins.delete('prefetch')
     config.plugins.delete('preload')
-    config.plugin('vconsole').use(new VConsolePlugin({ enable: isUat }))
+    // config.plugin('vconsole').use(new VConsolePlugin({ enable: false }))
     config.plugin('copyCubeModule').use(
       new CopyWebpackPlugin([
         {

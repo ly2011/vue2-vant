@@ -1034,6 +1034,11 @@
   resolved "https://registry.nlark.com/@types/q/download/@types/q-1.5.5.tgz#75a2a8e7d8ab4b230414505d92335d1dcb53a6df"
   integrity sha1-daKo59irSyMEFFBdkjNdHctTpt8=
 
+"@vant/area-data@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@vant/area-data/-/area-data-1.2.2.tgz#1b0559ee93661663d10d3766bcde15ab35ff3fcd"
+  integrity sha512-efv7Yl/OTHjyy0irhJJPtgZb5mJZmroEtVOa8vkGRNTLY93+NgEcVuIBaC35hYCMsTrPHDQRvQGnI9Hyhtto0Q==
+
 "@vant/icons@^1.5.3":
   version "1.7.0"
   resolved "https://registry.nlark.com/@vant/icons/download/@vant/icons-1.7.0.tgz?cache=0&sync_timestamp=1626958553251&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vant%2Ficons%2Fdownload%2F%40vant%2Ficons-1.7.0.tgz#02d427532a8142c35db159da9c364fe6890c3ac9"

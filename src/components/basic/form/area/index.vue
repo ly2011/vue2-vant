@@ -31,26 +31,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import { isObject } from 'lodash'
-import request from '@/utils/request'
-
-const getAreaByParentId = () => Promise.resolve()
+import { normalizeData } from './treeAreaData'
 
 const COMPONENT_NAME = 'i-area'
-
-function getAreaData (options, selectedOptions) {
-  for (let i = 0; i < selectedOptions.length; i++) {
-    const selectItem = selectedOptions[i]
-    for (let j = 0; j < options.length; j++) {
-      const area = options[j]
-      if (selectItem.areaCode === area.areaCode) {
-        area.children = selectItem.children
-      }
-    }
-  }
-  return options
-}
 
 export default {
   name: COMPONENT_NAME,
@@ -72,12 +56,6 @@ export default {
     beforeConfirm: Function
   },
   computed: {
-    ...mapGetters({
-      selectedUserAuthRole: 'selectedUserAuthRole'
-    }),
-    appMark () {
-      return this.selectedUserAuthRole?.appMark || null
-    },
     formValueModel: {
       get () {
         return isObject(this.value) ? this.value?.name : (this.formFieldProps?.value || this.value)
@@ -119,7 +97,8 @@ export default {
       options: [],
       fieldNames: {
         text: 'areaName',
-        value: 'areaCode'
+        value: 'areaCode',
+        children: 'children'
       },
       selectedOptions: [],
       tabIndex: 0
@@ -129,44 +108,21 @@ export default {
     this.getOptions()
   },
   methods: {
-    getOptions (parentId = 10001, level = 1, selectedOptions) {
-      const that = this
-      const { options, propsLevel } = this
-      const params = {
-        parentId, // 父区域ID  -1为根节点ID
-        level // 地区级别（0:国家，1:省份province,2:市city,3:区县district,4:街道street）
-      }
-      this.$toast.loading('加载中')
-      request.get(getAreaByParentId, { params }).then(res => {
-        const { data: { data: list, code } } = res
-        const data = list.filter(x => (!['其他', '其它'].includes(x.areaName)))
-        if (code === 0) {
-          data.map(x => {
-            x.children = params.level < propsLevel ? [] : null
-            x.name = x.areaName
-            x.code = x.areaCode
-            return x
-          })
-          if (params.level === 1) {
-            this.options = data
-          } else {
-            selectedOptions[selectedOptions.length - 1].children = data
-            that.options = getAreaData(options, selectedOptions)
-          }
-        }
-      }).finally(() => {
-        this.$toast.clear()
-      })
+    getOptions () {
+      const newOptions = normalizeData(undefined, this.fieldNames)
+      this.options = newOptions
     },
+    // eslint-disable-next-line no-unused-vars
     onChange ({ value, selectedOptions, tabIndex }) {
-      console.log(value, selectedOptions, tabIndex)
+      // console.log(value, selectedOptions, tabIndex)
       if (selectedOptions && selectedOptions.length) {
+        // eslint-disable-next-line no-unused-vars
         const { level, id } = selectedOptions[selectedOptions.length - 1]
         this.selectedOptions = selectedOptions
         this.tabIndex = tabIndex
         // this.currentValue = areaCode
         if (level < this.propsLevel) {
-          this.getOptions(id, level + 1, selectedOptions)
+          // this.getOptions(id, level + 1, selectedOptions)
         } else {
           this.onConfirm()
         }
@@ -188,12 +144,11 @@ export default {
       if (values.length === propsLevel) {
         const lastValue = {
           ...values[values.length - 1],
-          name: values.map(x => x.areaName).join('/')
+          name: values.map(x => x[this.fieldNames.text]).join('/')
         }
         this.$emit('input', lastValue, values, index)
-        console.log(this.events)
         this.$emit('confirm', values, index)
-        if (this.events?.confirm) this.events.confirm(values)
+        if (this.events?.confirm) this.events.confirm(values, index)
         this.show = false
       } else {
         this.$toast(`请选择${placeholder}`)
