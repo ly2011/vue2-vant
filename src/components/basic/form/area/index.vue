@@ -10,11 +10,7 @@
       @click-input="showSelector()"
       @click-right-icon="onClear"
     />
-    <van-popup
-      v-model="show"
-      position="bottom"
-      :safe-area-inset-bottom="true"
-    >
+    <van-popup v-model="show" position="bottom" :safe-area-inset-bottom="true">
       <van-cascader
         ref="area"
         v-model="currentValue"
@@ -31,10 +27,10 @@
 </template>
 
 <script>
-import { isObject } from 'lodash'
-import { normalizeData } from './treeAreaData'
+import { isObject } from 'lodash';
+import { normalizeData } from './treeAreaData';
 
-const COMPONENT_NAME = 'i-area'
+const COMPONENT_NAME = 'i-area';
 
 export default {
   name: COMPONENT_NAME,
@@ -44,123 +40,117 @@ export default {
     readonly: Boolean,
     props: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     events: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     // 打开弹窗前
     beforeOpen: Function,
     // 确认前回调
-    beforeConfirm: Function
+    beforeConfirm: Function,
   },
   computed: {
     formValueModel: {
-      get () {
-        return isObject(this.value) ? this.value?.name : (this.formFieldProps?.value || this.value)
-      }
+      get() {
+        return isObject(this.value) ? this.value?.name : this.formFieldProps?.value || this.value;
+      },
     },
     currentValue: {
-      get () {
-        return isObject(this.value) ? this.value?.areaCode : this.value
+      get() {
+        return isObject(this.value) ? this.value?.areaCode : this.value;
       },
-      set (val) {
-        this.$emit('input', val)
-      }
+      set(val) {
+        this.$emit('input', val);
+      },
     },
-    formFieldProps () {
-      return this.$attrs
+    formFieldProps() {
+      return this.$attrs;
     },
-    fieldProps () {
-      return this.props
+    fieldProps() {
+      return this.props;
     },
-    isDisabled () {
-      return this.fieldProps.disabled || (this.form || {}).disabled
+    isDisabled() {
+      return this.fieldProps.disabled || (this.form || {}).disabled;
     },
-    propsLevel () {
-      return this.columnsNum || this.props?.columnsNum || 3
+    propsLevel() {
+      return this.columnsNum || this.props?.columnsNum || 3;
     },
-    placeholder () {
+    placeholder() {
       const placeholderSuffix = {
         1: '省',
         2: '省市',
-        3: '省市县'
-      }
-      const placeholder = `请选择${placeholderSuffix[this.propsLevel] || ''}`
-      return placeholder
-    }
+        3: '省市县',
+      };
+      const placeholder = `请选择${placeholderSuffix[this.propsLevel] || ''}`;
+      return placeholder;
+    },
   },
-  data () {
+  data() {
     return {
       show: false,
       options: [],
       fieldNames: {
         text: 'areaName',
         value: 'areaCode',
-        children: 'children'
+        children: 'children',
       },
       selectedOptions: [],
-      tabIndex: 0
-    }
+      tabIndex: 0,
+    };
   },
-  created () {
-    this.getOptions()
+  created() {
+    this.getOptions();
   },
   methods: {
-    getOptions () {
-      const newOptions = normalizeData(undefined, this.fieldNames)
-      this.options = newOptions
+    getOptions() {
+      const newOptions = normalizeData(undefined, this.fieldNames);
+      this.options = newOptions;
     },
     // eslint-disable-next-line no-unused-vars
-    onChange ({ value, selectedOptions, tabIndex }) {
+    onChange({ value, selectedOptions, tabIndex }) {
       // console.log(value, selectedOptions, tabIndex)
       if (selectedOptions && selectedOptions.length) {
         // eslint-disable-next-line no-unused-vars
-        const { level, id } = selectedOptions[selectedOptions.length - 1]
-        this.selectedOptions = selectedOptions
-        this.tabIndex = tabIndex
+        const { level, id } = selectedOptions[selectedOptions.length - 1];
+        this.selectedOptions = selectedOptions;
+        this.tabIndex = tabIndex;
         // this.currentValue = areaCode
         if (level < this.propsLevel) {
           // this.getOptions(id, level + 1, selectedOptions)
         } else {
-          this.onConfirm()
+          this.onConfirm();
         }
       }
     },
-    showSelector () {
-      if (this.beforeOpen && !this.beforeOpen()) return false
-      if (this.isDisabled || this.readonly) return false
-      this.show = true
+    showSelector() {
+      if (this.beforeOpen && !this.beforeOpen()) return false;
+      if (this.isDisabled || this.readonly) return false;
+      this.show = true;
     },
-    onConfirm () {
-      const {
-        selectedOptions: values,
-        tabIndex: index,
-        propsLevel,
-        placeholder
-      } = this
-      if (this.beforeConfirm && !this.beforeConfirm(values, index)) return false
+    onConfirm() {
+      const { selectedOptions: values, tabIndex: index, propsLevel, placeholder } = this;
+      if (this.beforeConfirm && !this.beforeConfirm(values, index)) return false;
       if (values.length === propsLevel) {
         const lastValue = {
           ...values[values.length - 1],
-          name: values.map(x => x[this.fieldNames.text]).join('/')
-        }
-        this.$emit('input', lastValue, values, index)
-        this.$emit('confirm', values, index)
-        if (this.events?.confirm) this.events.confirm(values, index)
-        this.show = false
+          name: values.map(x => x[this.fieldNames.text]).join('/'),
+        };
+        this.$emit('input', lastValue, values, index);
+        this.$emit('confirm', values, index);
+        if (this.events?.confirm) this.events.confirm(values, index);
+        this.show = false;
       } else {
-        this.$toast(`请选择${placeholder}`)
+        this.$toast(`请选择${placeholder}`);
       }
     },
-    onClear () {
-      this.$emit('input', '')
-      this.$emit('clear')
-    }
-  }
-}
+    onClear() {
+      this.$emit('input', '');
+      this.$emit('clear');
+    },
+  },
+};
 </script>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

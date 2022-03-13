@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import 'vant/lib/icon/local.css'
+import Vue from 'vue';
+import 'vant/lib/icon/local.css';
 import {
   Card,
   Cell,
@@ -60,8 +60,8 @@ import {
   Cascader,
   DatetimePicker,
   Circle,
-  Badge
-} from 'vant'
+  Badge,
+} from 'vant';
 
 Vue.use(Card)
   .use(Cell)
@@ -122,4 +122,4 @@ Vue.use(Card)
   .use(Cascader)
   .use(DatetimePicker)
   .use(Circle)
-  .use(Badge)
+  .use(Badge);

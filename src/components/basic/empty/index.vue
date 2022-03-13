@@ -1,5 +1,10 @@
 <template>
-  <van-empty :description="description" :image="image" :class="['empty-box', size ? 'empty-box-' + size : '']" v-bind="$attrs">
+  <van-empty
+    :description="description"
+    :image="image"
+    :class="['empty-box', size ? 'empty-box-' + size : '']"
+    v-bind="$attrs"
+  >
     <template slot="default">
       <slot></slot>
     </template>
@@ -7,26 +12,26 @@
 </template>
 
 <script>
-import DefaultEmptyImage from '@/assets/img/empty-image-default.png'
+import DefaultEmptyImage from '@/assets/img/empty-image-default.png';
 
-const COMPONENT_NAME = 'i-empty'
+const COMPONENT_NAME = 'i-empty';
 export default {
   name: COMPONENT_NAME,
   props: {
     description: {
       type: String,
-      default: '暂无数据'
+      default: '暂无数据',
     },
     image: {
       type: String,
-      default: DefaultEmptyImage
+      default: DefaultEmptyImage,
     },
     size: {
       type: String,
-      default: 'medium'
-    }
-  }
-}
+      default: 'medium',
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>

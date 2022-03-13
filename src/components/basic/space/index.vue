@@ -1,77 +1,75 @@
 <script>
-import { omit } from 'lodash'
+import { omit } from 'lodash';
 
 const spaceSize = {
   small: 8,
   middle: 16,
-  large: 24
-}
+  large: 24,
+};
 
-const COMPONENT_NAME = 'i-space'
-const prefixCls = COMPONENT_NAME
+const COMPONENT_NAME = 'i-space';
+const prefixCls = COMPONENT_NAME;
 export default {
   name: COMPONENT_NAME,
   props: {
     // 间距大小
     size: {
       type: String,
-      default: 'small'
+      default: 'small',
     },
     // 对齐方式
     align: String,
     // 间距方向
     direction: {
       type: String,
-      default: 'horizontal'
+      default: 'horizontal',
     },
-    className: String
+    className: String,
   },
   computed: {
-    mergedAlign () {
-      const { align, direction } = this
-      return align === undefined && direction === 'horizontal' ? 'center' : align
+    mergedAlign() {
+      const { align, direction } = this;
+      return align === undefined && direction === 'horizontal' ? 'center' : align;
     },
-    spaceClassName () {
-      const { direction, className, mergedAlign } = this
+    spaceClassName() {
+      const { direction, className, mergedAlign } = this;
       const classNames = {
         [prefixCls]: true,
         [`${prefixCls}-${direction}`]: true,
         [`${prefixCls}-rtl`]: direction === 'rtl',
         [`${prefixCls}-align-${mergedAlign}`]: mergedAlign,
-        [className]: !!className
-      }
-      return classNames
+        [className]: !!className,
+      };
+      return classNames;
     },
-    itemClassName () {
-      return `${prefixCls}-item`
+    itemClassName() {
+      return `${prefixCls}-item`;
     },
-    marginDirection () {
-      const { direction } = this
-      return direction === 'rtl' ? 'marginLeft' : 'marginRight'
+    marginDirection() {
+      const { direction } = this;
+      return direction === 'rtl' ? 'marginLeft' : 'marginRight';
     },
-    otherProps () {
-      return omit(this.$props, ['size', 'align', 'className', 'direction'])
+    otherProps() {
+      return omit(this.$props, ['size', 'align', 'className', 'direction']);
     },
-    items () {
-      if (!this.$slots.default) return null
-      const items = this.$slots.default.filter(Boolean)
-      const len = items.length
+    items() {
+      if (!this.$slots.default) return null;
+      const items = this.$slots.default.filter(Boolean);
+      const len = items.length;
 
       if (len === 0) {
-        return null
+        return null;
       }
-      return items
+      return items;
     },
-    len () {
-      const { items } = this
-      if (!Array.isArray(items)) return 0
-      return items.length
-    }
+    len() {
+      const { items } = this;
+      if (!Array.isArray(items)) return 0;
+      return items.length;
+    },
   },
-  render () {
-    const {
-      spaceClassName, items, len, itemClassName, direction, size, marginDirection, otherProps
-    } = this
+  render() {
+    const { spaceClassName, items, len, itemClassName, direction, size, marginDirection, otherProps } = this;
 
     return (
       <div class={spaceClassName} {...otherProps}>
@@ -83,18 +81,18 @@ export default {
               i === len - 1
                 ? {}
                 : {
-                  [direction === 'vertical' ? 'marginBottom' : marginDirection]:
-                  typeof size === 'string' ? `${spaceSize[size]}px` : `${size}px`
-                }
+                    [direction === 'vertical' ? 'marginBottom' : marginDirection]:
+                      typeof size === 'string' ? `${spaceSize[size]}px` : `${size}px`,
+                  }
             }
           >
             {child}
           </div>
         ))}
       </div>
-    )
-  }
-}
+    );
+  },
+};
 </script>
 <style lang="less" scoped>
 .i-space {

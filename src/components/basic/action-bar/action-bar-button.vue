@@ -1,16 +1,16 @@
 <script>
-import { GoodsActionButton } from 'vant'
+import { GoodsActionButton } from 'vant';
 
-const COMPONENT_NAME = 'i-action-bar-button'
+const COMPONENT_NAME = 'i-action-bar-button';
 export default {
   name: COMPONENT_NAME,
   components: {
-    GoodsActionButton
+    GoodsActionButton,
   },
-  render () {
-    return <van-goods-action-button {...{ props: { ...this.$attrs } }} {...{ on: this.$listeners }} />
-  }
-}
+  render() {
+    return <van-goods-action-button {...{ props: { ...this.$attrs } }} {...{ on: this.$listeners }} />;
+  },
+};
 </script>
 <style lang="less">
 @import '~vant/lib/style/var.less';

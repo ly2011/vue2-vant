@@ -1,12 +1,20 @@
 <template>
   <van-tabbar v-model="active" style="z-index: 1999">
-    <van-tabbar-item v-for="(tab, index) in tabbar" :icon="tab.icon" :to="tab.path" :dot="tab.dot" :info="tab.info" :key="index">{{tab.name}}</van-tabbar-item>
+    <van-tabbar-item
+      v-for="(tab, index) in tabbar"
+      :icon="tab.icon"
+      :to="tab.path"
+      :dot="tab.dot"
+      :info="tab.info"
+      :key="index"
+      >{{ tab.name }}</van-tabbar-item
+    >
   </van-tabbar>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       active: 0,
       tabbar: [
@@ -16,7 +24,7 @@ export default {
           pathName: 'home',
           icon: 'wap-home',
           dot: false,
-          info: ''
+          info: '',
         },
         {
           name: '我的',
@@ -24,33 +32,33 @@ export default {
           pathName: 'mine',
           icon: 'user-circle-o',
           dot: false,
-          info: ''
-        }
-      ]
-    }
+          info: '',
+        },
+      ],
+    };
   },
 
   watch: {
-    $route: 'changeActive'
+    $route: 'changeActive',
   },
 
-  created () {
-    const toName = this.$route.name
-    this.setActive(toName)
+  created() {
+    const toName = this.$route.name;
+    this.setActive(toName);
   },
 
   methods: {
-    changeActive ({ name }) {
-      this.setActive(name)
+    changeActive({ name }) {
+      this.setActive(name);
     },
-    setActive (name) {
+    setActive(name) {
       this.tabbar.forEach((tab, i) => {
         if (tab.pathName === name) {
-          this.active = i
-          return false
+          this.active = i;
+          return false;
         }
-      })
-    }
-  }
-}
+      });
+    },
+  },
+};
 </script>

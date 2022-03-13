@@ -1,53 +1,39 @@
 <template>
-  <ul
-    class="image-preview"
-    v-if="images && images.length > 0"
-  >
-    <li
-      class="image-preview-item"
-      v-for="(item, index) in images"
-      :key="index"
-    >
-      <van-image
-        width="40"
-        height="40"
-        fit="cover"
-        :src="item.path"
-        :alt="item.name"
-        @click="handlePreview(index)"
-      />
+  <ul class="image-preview" v-if="images && images.length > 0">
+    <li class="image-preview-item" v-for="(item, index) in images" :key="index">
+      <van-image width="40" height="40" fit="cover" :src="item.path" :alt="item.name" @click="handlePreview(index)" />
     </li>
   </ul>
 </template>
 
 <script>
-import { ImagePreview } from 'vant'
+import { ImagePreview } from 'vant';
 
-const COMPONENT_NAME = 'i-image-preview'
+const COMPONENT_NAME = 'i-image-preview';
 export default {
   name: COMPONENT_NAME,
   props: {
     images: {
       type: Array,
-      default: () => ([])
-    }
+      default: () => [],
+    },
   },
   computed: {
-    imageList () {
-      if (!this.images) return []
-      return this.images?.map(item => item.path)
-    }
+    imageList() {
+      if (!this.images) return [];
+      return this.images?.map(item => item.path);
+    },
   },
   methods: {
-    handlePreview (index) {
+    handlePreview(index) {
       ImagePreview({
         images: this.imageList,
         startPosition: index,
-        onClose () { }
-      })
-    }
-  }
-}
+        onClose() {},
+      });
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>

@@ -1,23 +1,13 @@
 <template>
-  <van-field
-    readonly
-    v-bind="formFieldProps"
-    v-on="$listeners"
-    :disabled="isDisabled"
-  >
+  <van-field readonly v-bind="formFieldProps" v-on="$listeners" :disabled="isDisabled">
     <template #input>
-      <van-switch
-        v-model="currentValue"
-        v-bind="fieldProps"
-        :disabled="isDisabled"
-        v-on="events"
-      />
+      <van-switch v-model="currentValue" v-bind="fieldProps" :disabled="isDisabled" v-on="events" />
     </template>
   </van-field>
 </template>
 
 <script>
-const COMPONENT_NAME = 'i-switch'
+const COMPONENT_NAME = 'i-switch';
 export default {
   name: COMPONENT_NAME,
   inject: ['form'],
@@ -25,32 +15,32 @@ export default {
     value: [String, Number, Boolean],
     props: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     events: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   computed: {
     currentValue: {
-      get () {
-        return this.value
+      get() {
+        return this.value;
       },
 
-      set (val) {
-        this.$emit('input', val)
-      }
+      set(val) {
+        this.$emit('input', val);
+      },
     },
-    formFieldProps () {
-      return this.$attrs
+    formFieldProps() {
+      return this.$attrs;
     },
-    fieldProps () {
-      return this.props
+    fieldProps() {
+      return this.props;
     },
-    isDisabled () {
-      return this.fieldProps.disabled || (this.form || {}).disabled
-    }
-  }
-}
+    isDisabled() {
+      return this.fieldProps.disabled || (this.form || {}).disabled;
+    },
+  },
+};
 </script>

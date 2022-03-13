@@ -8,23 +8,15 @@
       v-on="$listeners"
     >
       <template #input>
-        <div
-          v-html="currentValue"
-          class="static-text"
-        />
+        <div v-html="currentValue" class="static-text" />
       </template>
     </van-field>
-    <van-field
-      v-show="!isReadonly && !isDisabled"
-      v-model="currentValue"
-      v-bind="formFieldProps"
-      v-on="events"
-    />
+    <van-field v-show="!isReadonly && !isDisabled" v-model="currentValue" v-bind="formFieldProps" v-on="events" />
   </div>
 </template>
 
 <script>
-const COMPONENT_NAME = 'i-input'
+const COMPONENT_NAME = 'i-input';
 export default {
   name: COMPONENT_NAME,
   inject: ['form'],
@@ -32,41 +24,41 @@ export default {
     value: [String, Number],
     props: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     events: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   computed: {
     currentValue: {
-      get () {
-        return this.value
+      get() {
+        return this.value;
       },
 
-      set (val) {
-        this.$emit('input', val)
-      }
+      set(val) {
+        this.$emit('input', val);
+      },
     },
-    formFieldProps () {
+    formFieldProps() {
       const defaultProps = {
         autosize: true,
-        rows: 1
-      }
-      return { ...defaultProps, ...this.$attrs, ...this.fieldProps }
+        rows: 1,
+      };
+      return { ...defaultProps, ...this.$attrs, ...this.fieldProps };
     },
-    fieldProps () {
-      return this.props
+    fieldProps() {
+      return this.props;
     },
-    isDisabled () {
-      return this.fieldProps.disabled || (this.form || {}).disabled
+    isDisabled() {
+      return this.fieldProps.disabled || (this.form || {}).disabled;
     },
-    isReadonly () {
-      return this.fieldProps.readonly || (this.form || {}).readonly
-    }
-  }
-}
+    isReadonly() {
+      return this.fieldProps.readonly || (this.form || {}).readonly;
+    },
+  },
+};
 </script>
 <style lang="less" scoped>
 .static-text {

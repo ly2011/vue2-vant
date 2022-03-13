@@ -8,21 +8,10 @@
     v-on="$listeners"
   >
     <div class="van-picker">
-      <div
-        v-if="showToolbar"
-        class="van-picker__toolbar"
-      >
-        <button
-          type="button"
-          class="van-picker__cancel"
-          @click="cancel"
-        >{{cancelButtonText}}</button>
-        <div class="van-ellipsis van-picker__title">{{title}}</div>
-        <button
-          type="button"
-          class="van-picker__confirm"
-          @click="confirm"
-        >{{confirmButtonText}}</button>
+      <div v-if="showToolbar" class="van-picker__toolbar">
+        <button type="button" class="van-picker__cancel" @click="cancel">{{ cancelButtonText }}</button>
+        <div class="van-ellipsis van-picker__title">{{ title }}</div>
+        <button type="button" class="van-picker__confirm" @click="confirm">{{ confirmButtonText }}</button>
       </div>
       <div class="picker-content">
         <slot />
@@ -32,7 +21,7 @@
 </template>
 
 <script>
-const COMPONENT_NAME = 'i-popup'
+const COMPONENT_NAME = 'i-popup';
 export default {
   name: COMPONENT_NAME,
   props: {
@@ -44,27 +33,27 @@ export default {
     position: { type: String, default: 'bottom' },
     cancelButtonText: { type: String, default: '取消' },
     confirmButtonText: { type: String, default: '确认' },
-    safeAreaInsetBottom: { type: Boolean, default: true }
+    safeAreaInsetBottom: { type: Boolean, default: true },
   },
   computed: {
     currentValue: {
-      get () {
-        return this.value
+      get() {
+        return this.value;
       },
 
-      set (val) {
-        this.$emit('input', val)
-      }
-    }
+      set(val) {
+        this.$emit('input', val);
+      },
+    },
   },
   methods: {
-    confirm () {
-      this.$emit('confirm')
+    confirm() {
+      this.$emit('confirm');
     },
 
-    cancel () {
-      this.$emit('cancel')
-    }
-  }
-}
+    cancel() {
+      this.$emit('cancel');
+    },
+  },
+};
 </script>

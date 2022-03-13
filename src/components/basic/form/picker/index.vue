@@ -10,12 +10,7 @@
       @click-input="showSelector()"
       @click-right-icon="onClear"
     />
-    <van-popup
-      v-model="show"
-      round
-      position="bottom"
-      get-container="#app"
-    >
+    <van-popup v-model="show" round position="bottom" get-container="#app">
       <van-picker
         :title="pickerTitle"
         show-toolbar
@@ -30,7 +25,7 @@
 </template>
 
 <script>
-const COMPONENT_NAME = 'i-picker'
+const COMPONENT_NAME = 'i-picker';
 export default {
   name: COMPONENT_NAME,
   inject: ['form'],
@@ -38,81 +33,81 @@ export default {
     value: [String, Number, Object],
     props: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     events: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     // 打开弹窗前
-    beforeOpen: Function
+    beforeOpen: Function,
   },
-  data () {
+  data() {
     return {
-      show: false
-    }
+      show: false,
+    };
   },
   computed: {
-    initShow () {
-      return this.props.initShow || false
+    initShow() {
+      return this.props.initShow || false;
     },
     currentValue: {
-      get () {
-        if (!this.value) return ''
-        if (!this.columns.length) return ''
-        const column = this.columns.find(item => item.value === this.value)
-        return column ? column.text : ''
-      }
+      get() {
+        if (!this.value) return '';
+        if (!this.columns.length) return '';
+        const column = this.columns.find(item => item.value === this.value);
+        return column ? column.text : '';
+      },
     },
-    formFieldProps () {
-      return this.$attrs
+    formFieldProps() {
+      return this.$attrs;
     },
-    fieldProps () {
-      return this.props
+    fieldProps() {
+      return this.props;
     },
-    isDisabled () {
-      return this.fieldProps.disabled || (this.form || {}).disabled
+    isDisabled() {
+      return this.fieldProps.disabled || (this.form || {}).disabled;
     },
-    clearable () {
-      return this.fieldProps.clearable ?? true
+    clearable() {
+      return this.fieldProps.clearable ?? true;
     },
-    columns () {
+    columns() {
       // 若配置了 columns 属性，则直接返回
-      if (this.fieldProps.columns) return this.fieldProps.columns
-      const options = this.fieldProps.options || []
+      if (this.fieldProps.columns) return this.fieldProps.columns;
+      const options = this.fieldProps.options || [];
       const columns = options.map(item => ({
         text: item.label,
         value: item.name,
         ...item,
-        disabled: item.disabled
-      }))
-      return columns
+        disabled: item.disabled,
+      }));
+      return columns;
     },
-    pickerTitle () {
-      return this.fieldProps.title || this.formFieldProps.placeholder || this.fieldProps.label
-    }
+    pickerTitle() {
+      return this.fieldProps.title || this.formFieldProps.placeholder || this.fieldProps.label;
+    },
   },
   watch: {
-    initShow (val) {
-      console.log(val)
-      this.show = val
-    }
+    initShow(val) {
+      console.log(val);
+      this.show = val;
+    },
   },
   methods: {
-    showSelector () {
-      if (this.beforeOpen && !this.beforeOpen()) return false
-      if (this.isDisabled) return false
-      this.show = true
+    showSelector() {
+      if (this.beforeOpen && !this.beforeOpen()) return false;
+      if (this.isDisabled) return false;
+      this.show = true;
     },
-    onConfirm (value) {
-      this.$emit('input', value.value)
-      this.$emit('confirm', value.value, value)
-      this.show = false
+    onConfirm(value) {
+      this.$emit('input', value.value);
+      this.$emit('confirm', value.value, value);
+      this.show = false;
     },
-    onClear () {
-      this.$emit('input', '')
-      this.$emit('clear')
-    }
-  }
-}
+    onClear() {
+      this.$emit('input', '');
+      this.$emit('clear');
+    },
+  },
+};
 </script>

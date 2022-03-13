@@ -26,53 +26,53 @@
 </template>
 
 <script>
-const COMPONENT_NAME = 'i-nav-bar'
+const COMPONENT_NAME = 'i-nav-bar';
 export default {
   name: COMPONENT_NAME,
   props: {
     title: String,
     leftText: {
       type: String,
-      default: ''
+      default: '',
     },
     rightText: {
       type: String,
-      default: ''
+      default: '',
     },
     preventGoBack: {
       type: Boolean,
-      default: false
+      default: false,
     },
     hasTabsCard: {
       type: Boolean,
-      default: false
+      default: false,
     },
     border: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   computed: {
-    navBarClass () {
+    navBarClass() {
       return {
         header: true,
-        'has-tabs-card': !!this.hasTabsCard
-      }
-    }
+        'has-tabs-card': !!this.hasTabsCard,
+      };
+    },
   },
   methods: {
-    handleClickLeft () {
+    handleClickLeft() {
       if (this.preventGoBack) {
-        this.$emit('click-left')
+        this.$emit('click-left');
       } else {
-        this.$root.goBack()
+        this.$root.goBack();
       }
     },
-    handleClickRight () {
-      this.$emit('click-right')
-    }
-  }
-}
+    handleClickRight() {
+      this.$emit('click-right');
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>

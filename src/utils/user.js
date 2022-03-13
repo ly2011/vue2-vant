@@ -3,39 +3,39 @@
 /**
  * 获取用户信息
  */
-export function getUserInfo () {
+export function getUserInfo() {
   // const userInfo = store?.state?.user?.user
-  const userInfo = JSON.parse(sessionStorage.getItem('user') || '{}')
-  return userInfo
+  const userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
+  return userInfo;
 }
 
 /**
  * 获取当前用户ssoToken
  */
-export function getSSOToken () {
-  return getUserInfo()?.ssoToken
+export function getSSOToken() {
+  return getUserInfo()?.ssoToken;
 }
 
 /**
  * 获取当前登录用户信息
  * @returns {object}
  */
-export function getLoginInfo () {
+export function getLoginInfo() {
   // const loginInfo = store?.state?.user?.loginInfo
-  const loginInfo = JSON.parse(sessionStorage.getItem('loginInfo') || '{}')
-  return loginInfo
+  const loginInfo = JSON.parse(sessionStorage.getItem('loginInfo') || '{}');
+  return loginInfo;
 }
 
 /**
  * 获取当前用户所属租户 ID
  */
-export function getUserOrganizationId () {
-  return getLoginInfo()?.organizationId
+export function getUserOrganizationId() {
+  return getLoginInfo()?.organizationId;
 }
 
 /**
  * 获取当前用户token
  */
-export function getUserToken () {
-  return getLoginInfo()?.accessToken
+export function getUserToken() {
+  return getLoginInfo()?.accessToken;
 }

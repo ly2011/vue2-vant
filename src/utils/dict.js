@@ -1,6 +1,6 @@
-import { isEmpty, isObject, cloneDeep } from 'lodash'
+import { isEmpty, isObject, cloneDeep } from 'lodash';
 
-const globalAllDicts = JSON.parse(sessionStorage.getItem('normalizeAllDicts') || '{}')
+const globalAllDicts = JSON.parse(sessionStorage.getItem('normalizeAllDicts') || '{}');
 
 /**
  * 获取某一个字典列表
@@ -9,23 +9,25 @@ const globalAllDicts = JSON.parse(sessionStorage.getItem('normalizeAllDicts') ||
  * @returns {Array}
  */
 export const getDictList = attributionCode => {
-  const allDicts = isEmpty(globalAllDicts) ? JSON.parse(sessionStorage.getItem('normalizeAllDicts') || '{}') : globalAllDicts
+  const allDicts = isEmpty(globalAllDicts)
+    ? JSON.parse(sessionStorage.getItem('normalizeAllDicts') || '{}')
+    : globalAllDicts;
   if (Array.isArray(attributionCode)) {
-    const tmpData = {}
+    const tmpData = {};
     Object.keys(allDicts).forEach(key => {
       if (attributionCode.includes(key)) {
         const tmpItem = {
-          [key]: allDicts[key] || []
-        }
-        Object.assign(tmpData, tmpItem)
+          [key]: allDicts[key] || [],
+        };
+        Object.assign(tmpData, tmpItem);
       }
-    })
-    return tmpData
+    });
+    return tmpData;
   }
-  if (!isObject(allDicts)) return []
-  const dict = allDicts[attributionCode] || []
-  return dict
-}
+  if (!isObject(allDicts)) return [];
+  const dict = allDicts[attributionCode] || [];
+  return dict;
+};
 
 /**
  * 获取某一个字典值的中文名称
@@ -34,15 +36,15 @@ export const getDictList = attributionCode => {
  * @returns {Array}
  */
 export const getDictLabel = (dicts, dictCode) => {
-  let nextDicts = cloneDeep(dicts)
-  if (!nextDicts) return ''
+  let nextDicts = cloneDeep(dicts);
+  if (!nextDicts) return '';
   if (!Array.isArray(nextDicts)) {
-    nextDicts = getDictList(nextDicts)
+    nextDicts = getDictList(nextDicts);
   }
-  const dict = nextDicts.find(dictObj => dictObj.value === dictCode)
-  const dictName = dict ? dict.text : ''
-  return dictName
-}
+  const dict = nextDicts.find(dictObj => dictObj.value === dictCode);
+  const dictName = dict ? dict.text : '';
+  return dictName;
+};
 
 /**
  * 获取某一个字典值的code
@@ -51,12 +53,12 @@ export const getDictLabel = (dicts, dictCode) => {
  * @returns {Array}
  */
 export const getDictValue = (dicts, dictName) => {
-  let nextDicts = cloneDeep(dicts)
-  if (!nextDicts) return ''
+  let nextDicts = cloneDeep(dicts);
+  if (!nextDicts) return '';
   if (!Array.isArray(nextDicts)) {
-    nextDicts = getDictList(nextDicts)
+    nextDicts = getDictList(nextDicts);
   }
-  const dict = nextDicts.find(dictObj => dictObj.text === dictName)
-  const dictCode = dict ? dict.value : ''
-  return dictCode
-}
+  const dict = nextDicts.find(dictObj => dictObj.text === dictName);
+  const dictCode = dict ? dict.value : '';
+  return dictCode;
+};

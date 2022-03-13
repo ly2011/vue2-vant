@@ -1,4 +1,4 @@
-import Vue from 'vue'
-import ICommon from './index'
+import Vue from 'vue';
+import ICommon from './index';
 
-Vue.use(ICommon)
+Vue.use(ICommon);
