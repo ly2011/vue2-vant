@@ -2,10 +2,10 @@ module.exports = {
   tabWidth: 2,
   useTabs: false,
   // printWidth: 150,
-  // singleQuote: true,
+  singleQuote: true,
   // trailingComma: 'none',
   // bracketSpacing: true, // 在对象，数组括号与文字之间加空格 "{ foo: bar }"
-  // semi: false,
+  semi: true,
   // parser: 'babylon',
   // proseWrap: 'always',
   // eslintIntegration: true, // 让prettier使用eslint的代码格式进行校验

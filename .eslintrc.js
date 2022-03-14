@@ -91,6 +91,7 @@ module.exports = {
     // 'vue/name-property-casing': ['error', 'PascalCase'],
     // 'vue/no-v-html': 'off',
     // 'space-before-function-paren': [2, 'always'], // 自动添加空格
+    'no-empty': 'off',
     "sonarjs/cognitive-complexity": ["error", 15],
     'no-multi-spaces': 'error', // 禁止多个空格
     'semi': [2, 'always'],// 自动补充分号
