@@ -5,7 +5,7 @@ module.exports = {
   env: {
     node: true
   },
-  extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],
+  extends: ["plugin:vue/essential", "eslint:recommended", "plugin:sonarjs/recommended", "@vue/prettier"],
   rules: {
     // 'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // 'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -91,6 +91,7 @@ module.exports = {
     // 'vue/name-property-casing': ['error', 'PascalCase'],
     // 'vue/no-v-html': 'off',
     // 'space-before-function-paren': [2, 'always'], // 自动添加空格
+    "sonarjs/cognitive-complexity": ["error", 15],
     'no-multi-spaces': 'error', // 禁止多个空格
     'semi': [2, 'always'],// 自动补充分号
     'quotes': ['error', 'single'], // 使用单引号
