@@ -1,4 +1,5 @@
 <script>
+import { h } from '@vue/composition-api';
 import IEmpty from '../empty';
 
 const noop = () => {};
@@ -72,7 +73,7 @@ export default {
       return column[this.rowKey] || column.key || column.dataIndex;
     },
   },
-  render(h) {
+  render() {
     const isEmpty = !this.data || this.data.length < 1;
     return (
       <div class={{ 'table-box': true, empty: isEmpty }}>
