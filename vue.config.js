@@ -1,46 +1,46 @@
-const path = require('path')
-const fs = require('fs')
-const WebpackZipPlugin = require('zip-webpack-plugin')
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path');
+const fs = require('fs');
+const WebpackZipPlugin = require('zip-webpack-plugin');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const VConsolePlugin = require('vconsole-webpack-plugin')
-const cubeModule = require('./CubeModule.json')
+const cubeModule = require('./CubeModule.json');
 
-const resolve = dir => path.join(__dirname, dir)
+const resolve = dir => path.join(__dirname, dir);
 
-const NODE_ENV = process.env.NODE_ENV
-const environment = process.env.environment
+const NODE_ENV = process.env.NODE_ENV;
+const environment = process.env.environment;
 
-const isDev = NODE_ENV === 'development'
-const isPro = environment === 'prod'
+const isDev = NODE_ENV === 'development';
+const isPro = environment === 'prod';
 // const isUat = environment === 'uat'
-const buildEnv = isPro ? 'product' : 'test' // 打包环境只有两种，一种是test,一种是生产
+const buildEnv = isPro ? 'product' : 'test'; // 打包环境只有两种，一种是test,一种是生产
 
 const theme = {
   'cell-vertical-padding': '8px',
   'dropdown-menu-title-font-size': '14px',
-  'tabs-default-color': '#3792e3'
-}
+  'tabs-default-color': '#3792e3',
+};
 
 const changeBuildVersion = () => {
-  let version = cubeModule.version.split('.')
+  let version = cubeModule.version.split('.');
   if (cubeModule[`${buildEnv}Version`]) {
-    version = cubeModule[`${buildEnv}Version`].split('.')
+    version = cubeModule[`${buildEnv}Version`].split('.');
   } else {
-    version = [1, 0, 0] // 默认初始化版本号为1.0.0
+    version = [1, 0, 0]; // 默认初始化版本号为1.0.0
   }
 
   // let newVersion = [1, 0, 0] // 默认初始化版本号为1.0.0
-  cubeModule.build = parseInt(`${version[0]}${version[1]}${version[2]}`, 10) * 100
-  cubeModule.version = version.join('.')
-  cubeModule[`${buildEnv}Version`] = version.join('.')
+  cubeModule.build = parseInt(`${version[0]}${version[1]}${version[2]}`, 10) * 100;
+  cubeModule.version = version.join('.');
+  cubeModule[`${buildEnv}Version`] = version.join('.');
   // console.error('package version:', version.join('.'), '  package build:', cubeModule.build)
-  const rootPath = __dirname
-  fs.writeFileSync(`${rootPath}/CubeModule.json`, JSON.stringify(cubeModule, null, 2), 'utf-8')
-}
+  const rootPath = __dirname;
+  fs.writeFileSync(`${rootPath}/CubeModule.json`, JSON.stringify(cubeModule, null, 2), 'utf-8');
+};
 
 if (!isDev) {
-  changeBuildVersion()
+  changeBuildVersion();
 }
 
 module.exports = {
@@ -50,25 +50,25 @@ module.exports = {
       less: {
         javascriptEnabled: true,
         // lessOptions: {
-        modifyVars: theme
+        modifyVars: theme,
         // }
-      }
-    }
+      },
+    },
   },
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'less',
-      patterns: [resolve('src/styles/common/var.less')]
-    }
+      patterns: [resolve('src/styles/common/var.less')],
+    },
   },
 
   chainWebpack: config => {
     config.plugin('define').tap(args => {
-      const nextProcessEnv = { ...args[0]['process.env'] }
-      nextProcessEnv.environment = JSON.stringify(process.env.environment)
-      args[0]['process.env'] = nextProcessEnv
-      return args
-    })
+      const nextProcessEnv = { ...args[0]['process.env'] };
+      nextProcessEnv.environment = JSON.stringify(process.env.environment);
+      args[0]['process.env'] = nextProcessEnv;
+      return args;
+    });
     config.resolve.alias
       .set('@', resolve('src'))
       .set('cf', resolve('src/views/hjcf'))
@@ -81,26 +81,26 @@ module.exports = {
       .set('config', resolve('src/config'))
       .set('utils', resolve('src/utils'))
       .set('services', resolve('src/services'))
-      .set('store', resolve('src/store'))
-    config.plugins.delete('prefetch')
-    config.plugins.delete('preload')
+      .set('store', resolve('src/store'));
+    config.plugins.delete('prefetch');
+    config.plugins.delete('preload');
     // config.plugin('vconsole').use(new VConsolePlugin({ enable: false }))
     config.plugin('copyCubeModule').use(
       new CopyWebpackPlugin([
         {
           from: path.resolve(__dirname, './CubeModule.json'),
-          to: path.join(__dirname, './dist')
-        }
+          to: path.join(__dirname, './dist'),
+        },
       ])
-    )
+    );
     if (!isDev) {
-      config.plugin('loadshReplace').use(new LodashModuleReplacementPlugin())
+      config.plugin('loadshReplace').use(new LodashModuleReplacementPlugin());
       config.plugin('zip').use(
         new WebpackZipPlugin({
           path: path.join(__dirname, './dist'),
-          filename: `${cubeModule.identifier}-${cubeModule.name}-${cubeModule.version}-${buildEnv}.zip`
+          filename: `${cubeModule.identifier}-${cubeModule.name}-${cubeModule.version}-${buildEnv}.zip`,
         })
-      )
+      );
       config.optimization
         .runtimeChunk(false) // share the same chunks across different modules
         .splitChunks({
@@ -111,14 +111,14 @@ module.exports = {
           cacheGroups: {
             vendor: {
               test: /[\\/]node_modules[\\/]/,
-              name (module) {
-                if (!module.context) return null
-                const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
-                return `npm.${packageName.replace('@', '')}`
-              }
-            }
-          }
-        })
+              name(module) {
+                if (!module.context) return null;
+                const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+                return `npm.${packageName.replace('@', '')}`;
+              },
+            },
+          },
+        });
     }
   },
 
@@ -132,9 +132,9 @@ module.exports = {
         target: 'http://127.0.0.1:3000',
         changeOrigin: true,
         pathRewrite: {
-          '/api': ''
-        }
-      }
-    }
-  }
-}
+          '/api': '',
+        },
+      },
+    },
+  },
+};
