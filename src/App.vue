@@ -10,6 +10,7 @@
       class="view-router"
       v-if="!$route.meta.keepAlive"
     ></router-view>
+    <i-tabbar v-if="$route.meta.tabbar" />
   </div>
 </template>
 <script>

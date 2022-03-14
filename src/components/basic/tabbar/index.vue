@@ -13,7 +13,9 @@
 </template>
 
 <script>
+const COMPONENT_NAME = 'i-tabbar';
 export default {
+  name: COMPONENT_NAME,
   data() {
     return {
       active: 0,
@@ -22,7 +24,23 @@ export default {
           name: '首页',
           path: '/',
           pathName: 'home',
-          icon: 'wap-home',
+          icon: 'home-o',
+          dot: false,
+          info: '',
+        },
+        {
+          name: '选项式',
+          path: '/options-api/basic-form',
+          pathName: 'options-api-basic-form',
+          icon: 'search',
+          dot: false,
+          info: '',
+        },
+        {
+          name: '组合式',
+          path: '/composition-api/basic-form',
+          pathName: 'composition-api-basic-form',
+          icon: 'vip-card-o',
           dot: false,
           info: '',
         },
@@ -30,7 +48,7 @@ export default {
           name: '我的',
           path: '/mine',
           pathName: 'mine',
-          icon: 'user-circle-o',
+          icon: 'setting-o',
           dot: false,
           info: '',
         },
@@ -44,6 +62,7 @@ export default {
 
   created() {
     const toName = this.$route.name;
+    console.log(toName, 'toName');
     this.setActive(toName);
   },
 

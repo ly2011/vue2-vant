@@ -11,6 +11,7 @@ import utils from 'utils';
 import * as config from 'config';
 import IEmpty from 'components/basic/empty';
 import ITable from 'components/basic/table';
+import ITabbar from 'components/basic/tabbar';
 
 // 导入封装好的全部公共 UI组件
 import './components/basic/install';
@@ -27,6 +28,7 @@ Vue.use(Plugin);
 Vue.use(filters);
 Vue.component(IEmpty.name, IEmpty);
 Vue.component(ITable.name, ITable);
+Vue.component(ITabbar.name, ITabbar);
 
 FastClick.attach(document.body);
 FastClick.prototype.focus = function (targetElement) {
