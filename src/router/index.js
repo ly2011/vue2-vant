@@ -21,13 +21,19 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
-      // meta: { keepAlive: true }
+      meta: { keepAlive: false, tabbar: true },
     },
     {
       path: '/test',
       name: 'test',
       component: () => import('@/views/test'),
       meta: { title: 'test' },
+    },
+    {
+      path: '/composition-api/basic-form',
+      name: 'composition-api-basic-form',
+      component: () => import('@/views/composition-api/basic-form'),
+      meta: { title: 'composition-api-basic-form', tabbar: true },
     },
     {
       path: '/topic-list',
@@ -40,6 +46,12 @@ export default new Router({
       name: 'topic-detail',
       component: () => import('@/views/composition-api/topic-detail'),
       meta: { title: 'topic-detail' },
+    },
+    {
+      path: '/options-api/basic-form',
+      name: 'options-api-basic-form',
+      component: () => import('@/views/options-api/basic-form'),
+      meta: { title: 'options-api-basic-form', tabbar: true },
     },
     ...cacheRouters,
     {
