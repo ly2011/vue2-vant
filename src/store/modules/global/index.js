@@ -1,53 +1,50 @@
-
 const _state = {
   allDicts: {},
   normalizeAllDicts: {},
   allArea: [],
   normalizeallArea: {},
-  normalizeallArea: {},
-  enterPageTime: Date.now()
-}
+  enterPageTime: Date.now(),
+};
 
 const mutations = {
   saveAllDicts(state, payload) {
-    state.allDicts = payload
+    state.allDicts = payload;
   },
   saveAllArea(state, payload) {
-    state.allArea = payload
+    state.allArea = payload;
   },
   saveNormalizeAllDicts(state, payload) {
-    state.normalizeAllDicts = payload
+    state.normalizeAllDicts = payload;
   },
   saveNormalizeallArea(state, payload) {
-    state.normalizeallArea = payload
+    state.normalizeallArea = payload;
   },
   saveEnterPageTime(state, payload) {
-    state.enterPageTime = payload
-  }
-}
+    state.enterPageTime = payload;
+  },
+};
 const getters = {
   allDicts(state) {
-    return state.allDicts
+    return state.allDicts;
   },
   allArea(state) {
-    return state.allArea
+    return state.allArea;
   },
   normalizeAllDicts(state) {
-    return state.normalizeAllDicts
+    return state.normalizeAllDicts;
   },
   normalizeallArea(state) {
-    return state.normalizeallArea
+    return state.normalizeallArea;
   },
   enterPageTime(state) {
-    return state.enterPageTime
-  }
-}
-const actions = {
-}
+    return state.enterPageTime;
+  },
+};
+const actions = {};
 
 export default {
   state: _state,
   getters,
   mutations,
-  actions
-}
+  actions,
+};
