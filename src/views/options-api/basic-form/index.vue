@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <i-form ref="form" :model="ruleForm" :fields="fields" :disabled="false">
       <template v-slot:form-bidMembers="{ props, events, ...fieldProps }">
         <van-field v-bind="fieldProps">
@@ -190,3 +190,9 @@ export default {
   },
 };
 </script>
+<style lang="less" scoped>
+.page {
+  height: calc(~'100vh - @{tabbar-height}');
+  overflow-y: auto;
+}
+</style>
