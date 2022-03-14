@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     fields() {
-      const fields = [
+      return [
         {
           type: 'textarea',
           key: 'name',
@@ -169,7 +169,6 @@ export default {
           },
         },
       ];
-      return fields;
     },
   },
   methods: {

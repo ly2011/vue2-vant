@@ -57,12 +57,11 @@ export default {
     },
     options() {
       const options = this.fieldProps.options || [];
-      const nextOptions = options.map(item => ({
+      return options.map(item => ({
         text: item.label,
         value: item.name,
         ...item,
       }));
-      return nextOptions;
     },
   },
 };

@@ -76,8 +76,7 @@ export default {
   computed: {
     fieldList() {
       return this.fields.filter(item => {
-        const isHidden = isFunction(item.hidden) ? !item.hidden(this.model) : !item.hidden;
-        return isHidden;
+        return isFunction(item.hidden) ? !item.hidden(this.model) : !item.hidden;
       });
     },
   },

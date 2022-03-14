@@ -66,8 +66,7 @@ export const toDayjs = value => {
   if (!value) return undefined;
   if (!isDate(value)) return undefined;
   value = transferDate(value);
-  const tempDate = dayjs.isDayjs(value) ? value : dayjs(value);
-  return tempDate;
+  return dayjs.isDayjs(value) ? value : dayjs(value);
 };
 
 export default dayjs;

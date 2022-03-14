@@ -33,14 +33,13 @@ export default {
     },
     spaceClassName() {
       const { direction, className, mergedAlign } = this;
-      const classNames = {
+      return {
         [prefixCls]: true,
         [`${prefixCls}-${direction}`]: true,
         [`${prefixCls}-rtl`]: direction === 'rtl',
         [`${prefixCls}-align-${mergedAlign}`]: mergedAlign,
         [className]: !!className,
       };
-      return classNames;
     },
     itemClassName() {
       return `${prefixCls}-item`;

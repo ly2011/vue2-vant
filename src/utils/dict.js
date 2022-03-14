@@ -25,8 +25,7 @@ export const getDictList = attributionCode => {
     return tmpData;
   }
   if (!isObject(allDicts)) return [];
-  const dict = allDicts[attributionCode] || [];
-  return dict;
+  return allDicts[attributionCode] || [];
 };
 
 /**
@@ -42,8 +41,7 @@ export const getDictLabel = (dicts, dictCode) => {
     nextDicts = getDictList(nextDicts);
   }
   const dict = nextDicts.find(dictObj => dictObj.value === dictCode);
-  const dictName = dict ? dict.text : '';
-  return dictName;
+  return dict ? dict.text : '';
 };
 
 /**
@@ -59,6 +57,5 @@ export const getDictValue = (dicts, dictName) => {
     nextDicts = getDictList(nextDicts);
   }
   const dict = nextDicts.find(dictObj => dictObj.text === dictName);
-  const dictCode = dict ? dict.value : '';
-  return dictCode;
+  return dict ? dict.value : '';
 };

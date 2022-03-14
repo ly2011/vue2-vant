@@ -6,18 +6,18 @@
 // import ITable from './table'
 import { formComponents } from './form';
 
-const allComponents = [
-  // IEmpty,
-  // IIconSvg,
-  // IImagePreview,
-  // INavBar,
-  // IPopup,
-  // ITable
-];
+// const allComponents = [
+//   // IEmpty,
+//   // IIconSvg,
+//   // IImagePreview,
+//   // INavBar,
+//   // IPopup,
+//   // ITable
+// ];
 const components = {};
-allComponents.forEach(Component => {
-  components[Component.name] = Component;
-});
+// allComponents.forEach(Component => {
+//   components[Component.name] = Component;
+// });
 Object.assign(components, formComponents);
 console.log('所有注册的组件！', components);
 // eslint-disable-next-line func-names

@@ -75,13 +75,12 @@ export default {
       // 若配置了 columns 属性，则直接返回
       if (this.fieldProps.columns) return this.fieldProps.columns;
       const options = this.fieldProps.options || [];
-      const columns = options.map(item => ({
+      return options.map(item => ({
         text: item.label,
         value: item.name,
         ...item,
         disabled: item.disabled,
       }));
-      return columns;
     },
     pickerTitle() {
       return this.fieldProps.title || this.formFieldProps.placeholder || this.fieldProps.label;

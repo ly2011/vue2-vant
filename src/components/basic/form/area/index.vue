@@ -83,8 +83,7 @@ export default {
         2: '省市',
         3: '省市县',
       };
-      const placeholder = `请选择${placeholderSuffix[this.propsLevel] || ''}`;
-      return placeholder;
+      return `请选择${placeholderSuffix[this.propsLevel] || ''}`;
     },
   },
   data() {

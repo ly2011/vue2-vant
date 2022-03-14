@@ -5,8 +5,7 @@
  */
 export function getUserInfo() {
   // const userInfo = store?.state?.user?.user
-  const userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
-  return userInfo;
+  return JSON.parse(sessionStorage.getItem('user') || '{}');
 }
 
 /**
@@ -22,8 +21,7 @@ export function getSSOToken() {
  */
 export function getLoginInfo() {
   // const loginInfo = store?.state?.user?.loginInfo
-  const loginInfo = JSON.parse(sessionStorage.getItem('loginInfo') || '{}');
-  return loginInfo;
+  return JSON.parse(sessionStorage.getItem('loginInfo') || '{}');
 }
 
 /**

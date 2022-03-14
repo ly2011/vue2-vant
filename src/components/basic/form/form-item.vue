@@ -44,8 +44,7 @@ export default {
   computed: {
     modelVal() {
       const key = this.field.key;
-      const modelVal = key ? this.form.model[key] : null;
-      return modelVal;
+      return key ? this.form.model[key] : null;
     },
     componentName() {
       const { customFieldType, simpleFieldTypes, field } = this;

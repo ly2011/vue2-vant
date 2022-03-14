@@ -81,8 +81,7 @@ export default {
       if (this.minDate && typeof this.minDate === 'string') {
         tempDate = this.minDate.replace(/-/g, '/');
       }
-      const data = tempDate ? new Date(tempDate) : new Date(this.getCurrentYear(), 0, 1);
-      return data;
+      return tempDate ? new Date(tempDate) : new Date(this.getCurrentYear(), 0, 1);
     },
   },
   methods: {

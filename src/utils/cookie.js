@@ -1,6 +1,7 @@
 export const setCookie = (name, value, expiredays) => {
   const exdate = new Date();
   exdate.setDate(exdate.getDate() + expiredays);
+  // eslint-disable-next-line sonarjs/no-nested-template-literals
   document.cookie = `${name}=${escape(value)}${expiredays == null ? '' : `;expires=${exdate.toGMTString()}`}`;
 };
 // 获取cookie

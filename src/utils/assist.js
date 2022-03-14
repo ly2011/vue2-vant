@@ -26,10 +26,7 @@ export const stringIsEmpty = value => {
     // eslint-disable-next-line no-param-reassign
     value = value.trim();
   }
-  if (value === undefined || value === null || value === '') {
-    return true;
-  }
-  return false;
+  return value === undefined || value === null || value === '';
 };
 
 /**
@@ -73,6 +70,7 @@ export const formatNum = num => {
  * @example
  * num 比如:1对应一 11：十一 101:一百零一
  */
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const numberToChinese = num => {
   const AA = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
   const BB = ['', '十', '百', '仟', '萬', '億', '点', ''];
@@ -127,6 +125,7 @@ export const numberToChinese = num => {
  * @param {Number} num
  * @returns {String}
  */
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const toChinese = num => {
   // 判断如果传递进来的不是字符的话转换为字符
   if (typeof num === 'number') {
