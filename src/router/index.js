@@ -29,6 +29,18 @@ export default new Router({
       component: () => import('@/views/test'),
       meta: { title: 'test' },
     },
+    {
+      path: '/topic-list',
+      name: 'topic-list',
+      component: () => import('@/views/composition-api/topic-list'),
+      meta: { title: 'topic-list' },
+    },
+    {
+      path: '/topic-detail/:id',
+      name: 'topic-detail',
+      component: () => import('@/views/composition-api/topic-detail'),
+      meta: { title: 'topic-detail' },
+    },
     ...cacheRouters,
     {
       path: '*',
