@@ -10,7 +10,7 @@ export const dictMixin = {
     }),
   },
   filters: {
-    dictFilter: (value, feild) => getDictLabel(feild, value),
+    dictFilter: (value, field) => getDictLabel(field, value),
   },
   methods: {
     // 权限按钮
@@ -22,7 +22,7 @@ export const dictMixin = {
   },
 };
 
-export const ehartsMixin = {
+export const echartsMixin = {
   data() {
     return {
       showFlag: true,
