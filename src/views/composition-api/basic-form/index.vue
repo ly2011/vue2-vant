@@ -14,15 +14,18 @@
     <div style="margin: 16px">
       <van-button round block type="info" @click="submit"> 提交 </van-button>
     </div>
+    <supplier-list v-model="supplierListModalVisible" />
   </div>
 </template>
 
 <script>
 import { defineComponent, ref, computed } from '@vue/composition-api';
+import SupplierList from './supplier-list.vue';
 export default defineComponent({
-  components: {},
+  components: { SupplierList },
   // eslint-disable-next-line no-unused-vars
   setup(props, { root }) {
+    const supplierListModalVisible = ref(false);
     const ruleForm = ref({
       name: '饿了么',
       checkbox: '',
@@ -163,6 +166,7 @@ export default defineComponent({
         events: {
           click: () => {
             console.log('我已查看');
+            supplierListModalVisible.value = true;
           },
         },
       },
@@ -191,6 +195,7 @@ export default defineComponent({
       formRef,
       submit,
       openBidMembers,
+      supplierListModalVisible,
     };
   },
 });
