@@ -4,12 +4,12 @@ export function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
 }
 
-const transferDate = date => {
-  if (date && typeof date === 'string') {
-    if (date.includes('-') || date.includes('/')) {
-      return date.replace(/-/g, '/');
-    }
-    return parseFloat(date);
+// iOS 时间格式
+export const ISO_8601 = /(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})Z/;
+
+export const transferDate = date => {
+  if (date && typeof date === 'string' && !ISO_8601.test(date)) {
+    return date.replace(/-/g, '/');
   }
   return date;
 };
