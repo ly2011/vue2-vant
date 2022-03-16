@@ -21,3 +21,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# project specific files
+presets/types/auto-imports.d.ts
+presets/types/components.d.ts

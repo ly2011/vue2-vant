@@ -62,7 +62,6 @@ export default {
 
   created() {
     const toName = this.$route.name;
-    console.log(toName, 'toName');
     this.setActive(toName);
   },
 
