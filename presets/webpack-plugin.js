@@ -2,8 +2,13 @@ const { resolve } = require('path');
 // const AutoImport = require('unplugin-auto-import/webpack');
 const Components = require('unplugin-vue-components/webpack');
 const { VantResolver } = require('unplugin-vue-components/resolvers');
+const ScriptSetup = require('unplugin-vue2-script-setup/webpack').default;
 
 const webpackPlugin = () => [
+  // vue2 支持 <script setup> 语法
+  ScriptSetup({
+    reactivityTransform: true,
+  }),
   // 组件自动按需导入
   Components({
     // 要搜索组件的目录的相对路径
