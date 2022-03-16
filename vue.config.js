@@ -1,10 +1,14 @@
 const path = require('path');
 const fs = require('fs');
+// const AutoImport = require('unplugin-auto-import/webpack');
+// const Components = require('unplugin-vue-components/webpack');
+// const { VantResolver } = require('unplugin-vue-components/resolvers');
 const WebpackZipPlugin = require('zip-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const VConsolePlugin = require('vconsole-webpack-plugin')
 const cubeModule = require('./CubeModule.json');
+const WebpackPlugin = require('./presets/webpack-plugin');
 
 const resolve = dir => path.join(__dirname, dir);
 
@@ -42,7 +46,6 @@ const changeBuildVersion = () => {
 if (!isDev) {
   changeBuildVersion();
 }
-
 module.exports = {
   publicPath: './',
   css: {
@@ -71,7 +74,6 @@ module.exports = {
     });
     config.resolve.alias
       .set('@', resolve('src'))
-      .set('cf', resolve('src/views/hjcf'))
       .set('components', resolve('src/components'))
       .set('views', resolve('src/views'))
       .set('assets', resolve('src/assets'))
@@ -84,6 +86,16 @@ module.exports = {
       .set('store', resolve('src/store'));
     config.plugins.delete('prefetch');
     config.plugins.delete('preload');
+
+    // config
+    //   .plugin('unplugin-vue-components')
+    //   .use(Components, [
+    //     {
+    //       resolvers: [VantResolver()],
+    //     },
+    //   ])
+    //   .init((Plugin, args) => Plugin(...args));
+
     // config.plugin('vconsole').use(new VConsolePlugin({ enable: false }))
     config.plugin('copyCubeModule').use(
       new CopyWebpackPlugin([
@@ -122,6 +134,23 @@ module.exports = {
     }
   },
 
+  configureWebpack: {
+    plugins: [
+      // AutoImport({
+      //   resolvers: [VantResolver()],
+      // }),
+      // Components({
+      //   // 要搜索组件的目录的相对路径
+      //   dirs: ['src/components', 'src/views'],
+      //   // 搜索子目录
+      //   deep: true,
+      //   extensions: ['vue', 'js', 'jsx', 'ts', 'tsx'],
+      //   include: [/\.vue$/, /\.vue\?vue/, /\.js$/, /\.jsx$/, /\.ts$/, /\.tsx$/],
+      //   resolvers: [VantResolver()],
+      // }),
+      ...WebpackPlugin(),
+    ],
+  },
   productionSourceMap: false,
 
   devServer: {

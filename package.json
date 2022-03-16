@@ -66,6 +66,8 @@
     "prettier": "^2.4.1",
     "rimraf": "^2.6.3",
     "style-resources-loader": "^1.2.1",
+    "unplugin-auto-import": "^0.6.6",
+    "unplugin-vue-components": "^0.18.0",
     "vconsole-webpack-plugin": "^1.5.1",
     "vue-cli-plugin-style-resources-loader": "~0.1.4",
     "vue-template-compiler": "^2.6.11",
