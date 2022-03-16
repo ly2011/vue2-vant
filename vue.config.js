@@ -125,7 +125,7 @@ module.exports = {
   productionSourceMap: false,
 
   devServer: {
-    useLocalIp: true,
+    // useLocalIp: true,
     port: 5000,
     proxy: {
       '/api': {

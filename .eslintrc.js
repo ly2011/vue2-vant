@@ -1,11 +1,11 @@
-const path = require('path')
+const path = require('path');
 module.exports = {
   root: true,
 
   env: {
-    node: true
+    node: true,
   },
-  extends: ["plugin:vue/essential", "eslint:recommended", "plugin:sonarjs/recommended", "@vue/prettier"],
+  extends: ['plugin:vue/essential', 'eslint:recommended', 'plugin:sonarjs/recommended', '@vue/prettier'],
   rules: {
     // 'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // 'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -92,10 +92,11 @@ module.exports = {
     // 'vue/no-v-html': 'off',
     // 'space-before-function-paren': [2, 'always'], // 自动添加空格
     'no-empty': 'off',
-    "sonarjs/cognitive-complexity": ["error", 15],
+    'sonarjs/cognitive-complexity': ['error', 15],
     'no-multi-spaces': 'error', // 禁止多个空格
-    'semi': [2, 'always'],// 自动补充分号
-    'quotes': ['error', 'single'], // 使用单引号
+    semi: [2, 'always'], // 自动补充分号
+    quotes: ['error', 'single'], // 使用单引号
+    'vue/multi-word-component-names': 'off',
     'prettier/prettier': [
       'error',
       {
@@ -107,11 +108,11 @@ module.exports = {
 
   globals: {
     page: true,
-    axios: true
+    axios: true,
   },
 
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: '@babel/eslint-parser',
   },
 
   settings: {
@@ -129,11 +130,10 @@ module.exports = {
           ['filters', path.resolve(__dirname, 'src/filters')],
           ['styles', path.resolve(__dirname, 'src/styles')],
           ['plugins', path.resolve(__dirname, 'src/plugins')],
-          ['APP_ROOT', path.resolve(__dirname)]
+          ['APP_ROOT', path.resolve(__dirname)],
         ],
-        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.vue']
-      }
-    }
-  }
-
-}
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.vue'],
+      },
+    },
+  },
+};
