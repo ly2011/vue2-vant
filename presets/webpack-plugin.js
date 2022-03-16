@@ -7,7 +7,8 @@ const webpackPlugin = () => [
   // 组件自动按需导入
   Components({
     // 要搜索组件的目录的相对路径
-    dirs: ['src/components', 'src/views/**/components'],
+    dirs: ['src/views/**/components'],
+    // dirs: ['src/components', 'src/views/**/components'],
     // 搜索子目录
     deep: true,
     extensions: ['vue', 'js', 'jsx', 'ts', 'tsx'],
