@@ -1,8 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-// const AutoImport = require('unplugin-auto-import/webpack');
-// const Components = require('unplugin-vue-components/webpack');
-// const { VantResolver } = require('unplugin-vue-components/resolvers');
 const WebpackZipPlugin = require('zip-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -135,23 +132,10 @@ module.exports = {
   },
 
   configureWebpack: {
-    plugins: [
-      // AutoImport({
-      //   resolvers: [VantResolver()],
-      // }),
-      // Components({
-      //   // 要搜索组件的目录的相对路径
-      //   dirs: ['src/components', 'src/views'],
-      //   // 搜索子目录
-      //   deep: true,
-      //   extensions: ['vue', 'js', 'jsx', 'ts', 'tsx'],
-      //   include: [/\.vue$/, /\.vue\?vue/, /\.js$/, /\.jsx$/, /\.ts$/, /\.tsx$/],
-      //   resolvers: [VantResolver()],
-      // }),
-      ...WebpackPlugin(),
-    ],
+    plugins: [...WebpackPlugin()],
   },
   productionSourceMap: false,
+  parallel: false, // disable thread-loader, which is not compactible with unplugin-vue2-script-setup plugin
 
   devServer: {
     // useLocalIp: true,
