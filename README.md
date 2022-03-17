@@ -1,5 +1,14 @@
 # 基于Vue2+vant移动端项目
 
+## 特性
+
+- git commit message 校验
+- 移动端样式自适应(vw/vh)
+- lodash体积优化
+- webpack5
+- 支持自动导入vant组件
+- 支持 `<script setup>` 语法
+
 ## 使用教程
 
 **样式必须使用 `less`**
