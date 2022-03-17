@@ -4,6 +4,15 @@ module.exports = {
 
   env: {
     node: true,
+    // The Follow config only works with eslint-plugin-vue v8.0.0+
+    'vue/setup-compiler-macros': true,
+  },
+  globals: {
+    defineProps: true,
+    defineEmits: true,
+    defineExpose: true,
+    withDefaults: true,
+    axios: true,
   },
   extends: ['plugin:vue/essential', 'eslint:recommended', 'plugin:sonarjs/recommended', '@vue/prettier'],
   rules: {

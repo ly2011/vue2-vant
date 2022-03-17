@@ -12,10 +12,7 @@
 <script setup>
 import { ref, computed, watch } from '@vue/composition-api';
 
-/* eslint-disable no-undef */
 defineProps({ msg: { type: String, default: 'hello' } });
-/* eslint-enable no-undef */
-// eslint-disable-next-line no-undef
 const emit = defineEmits(['update']);
 const count = ref(0);
 const double = computed(() => count.value * 2);
