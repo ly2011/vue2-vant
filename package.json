@@ -10,6 +10,7 @@
     "lint:fix": "vue-cli-service lint --fix --ext .js,.jsx,.vue ./src",
     "preinstall": "npx only-allow yarn",
     "prod": "cross-env environment=prod vue-cli-service build",
+    "deploy": "gh-pages -d dist",
     "removecache": "rimraf ./node_modules/.cache"
   },
   "dependencies": {
@@ -52,6 +53,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-sonarjs": "^0.12.0",
     "eslint-plugin-vue": "^8.0.3",
+    "gh-pages": "^3.2.3",
     "git-cz": "^4.8.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
