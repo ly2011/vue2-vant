@@ -132,6 +132,12 @@ module.exports = {
   },
 
   configureWebpack: {
+    cache: isDev
+      ? { type: 'memory' }
+      : {
+          type: 'filesystem',
+          allowCollectingMemory: true,
+        },
     plugins: [...WebpackPlugin()],
   },
   productionSourceMap: false,
