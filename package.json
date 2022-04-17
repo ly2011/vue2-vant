@@ -68,6 +68,7 @@
     "postcss-write-svg": "^3.0.1",
     "prettier": "^2.4.1",
     "rimraf": "^2.6.3",
+    "speed-measure-webpack-plugin": "^1.5.0",
     "style-resources-loader": "^1.2.1",
     "unplugin-auto-import": "^0.6.6",
     "unplugin-vue-components": "^0.18.0",

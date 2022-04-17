@@ -3,6 +3,7 @@ const fs = require('fs');
 const WebpackZipPlugin = require('zip-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 // const VConsolePlugin = require('vconsole-webpack-plugin')
 const cubeModule = require('./CubeModule.json');
 const WebpackPlugin = require('./presets/webpack-plugin');
@@ -43,6 +44,10 @@ const changeBuildVersion = () => {
 if (!isDev) {
   changeBuildVersion();
 }
+
+// 记录打包速度
+const smp = new SpeedMeasurePlugin();
+
 module.exports = {
   publicPath: './',
   css: {
@@ -131,7 +136,7 @@ module.exports = {
     }
   },
 
-  configureWebpack: {
+  configureWebpack: smp.wrap({
     cache: isDev
       ? { type: 'memory' }
       : {
@@ -139,7 +144,7 @@ module.exports = {
           allowCollectingMemory: true,
         },
     plugins: [...WebpackPlugin()],
-  },
+  }),
   productionSourceMap: false,
   parallel: false, // disable thread-loader, which is not compactible with unplugin-vue2-script-setup plugin
 
