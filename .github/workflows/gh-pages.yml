@@ -33,7 +33,14 @@ jobs:
 
       - run: yarn install --frozen-lockfile
       - run: yarn build
-      - run: yarn deploy
+      # - run: yarn deploy
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist # The folder the action should deploy.
 
       # - name: Deploy
       #   uses: peaceiris/actions-gh-pages@v3
