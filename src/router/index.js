@@ -35,18 +35,18 @@ export default new Router({
     //   component: () => import('@/views/composition-api/basic-form'),
     //   meta: { title: 'composition-api-basic-form', tabbar: true },
     // },
-    // {
-    //   path: '/topic-list',
-    //   name: 'topic-list',
-    //   component: () => import('@/views/composition-api/topic-list'),
-    //   meta: { title: 'topic-list' },
-    // },
-    // {
-    //   path: '/topic-detail/:id',
-    //   name: 'topic-detail',
-    //   component: () => import('@/views/composition-api/topic-detail'),
-    //   meta: { title: 'topic-detail' },
-    // },
+    {
+      path: '/topic-list',
+      name: 'topic-list',
+      component: () => import('@/views/composition-api/topic-list/index.vue'),
+      meta: { title: 'topic-list' },
+    },
+    {
+      path: '/topic-detail/:id',
+      name: 'topic-detail',
+      component: () => import('@/views/composition-api/topic-detail/index.vue'),
+      meta: { title: 'topic-detail' },
+    },
     // {
     //   path: '/options-api/basic-form',
     //   name: 'options-api-basic-form',

@@ -1,4 +1,3 @@
-```vue
 <template>
   <i-table :columns="columns" :data="data" />
 </template>
