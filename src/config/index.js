@@ -1,4 +1,6 @@
-export const { environment } = process.env;
+// export const { environment } = process.env;
+
+export const environment = 'local';
 
 export const userTest = {
   // 模拟获取的用户uid

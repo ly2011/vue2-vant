@@ -1,4 +1,4 @@
-import { environment, baseFileUrl } from '@/config';
+import { environment, baseFileUrl } from '@/config/index.js';
 
 /**
  * 获取文件大小

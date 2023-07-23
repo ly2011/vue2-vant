@@ -1,9 +1,9 @@
 import { isArray, isObject } from 'lodash';
 import { Dialog, Toast } from 'vant';
-import { attachmentInfoUrl } from '@/config';
-import nativeApi from './nativeApi';
-import { getFileExt, checkPdf, checkDocument } from './file';
-import request from './request';
+import { attachmentInfoUrl } from '@/config/index.js';
+import nativeApi from './nativeApi.js';
+import { getFileExt, checkPdf, checkDocument } from './file.js';
+import request from './request.js';
 
 /**
  * 自动加载对应的模块

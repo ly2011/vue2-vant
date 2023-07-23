@@ -1,12 +1,12 @@
-import * as assist from './assist';
-import request from './request';
-import * as file from './file';
-import * as user from './user';
-import * as cookie from './cookie';
-import * as dict from './dict';
-import * as time from './time';
-import * as validate from './validate';
-import * as businessCommonUtils from './businessCommonUtils';
+import * as assist from './assist.js';
+import request from './request.js';
+import * as file from './file.js';
+import * as user from './user.js';
+import * as cookie from './cookie.js';
+import * as dict from './dict.js';
+import * as time from './time.js';
+import * as validate from './validate.js';
+import * as businessCommonUtils from './businessCommonUtils.js';
 
 export default {
   assist,

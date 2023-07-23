@@ -10,6 +10,6 @@ module.exports = {
       },
       'vant'
     ],
-    'lodash'
+    // 'lodash'
   ]
 }

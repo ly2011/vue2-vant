@@ -1,4 +1,4 @@
-import store from '@/store';
+import store from '@/store/index.js';
 
 export const getBtnAuth = code => {
   if (!code) return false;

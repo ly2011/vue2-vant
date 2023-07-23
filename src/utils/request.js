@@ -1,13 +1,14 @@
 import axios from 'axios';
 // import Qs from 'qs'
 // import store from '@/store'
-import { environment, baseUrl, invalidRequestCode } from '@/config';
-import nativeApi from '@/utils/nativeApi';
+import { environment, baseUrl, invalidRequestCode } from '@/config/index.js';
+import nativeApi from '@/utils/nativeApi.js';
 
 axios.defaults.baseURL = baseUrl[environment]; // 接口地址
 // 设置默认请求头
 axios.defaults.headers.common['Content-Type'] = 'application/json;text/plain;charset=UTF-8';
-const { NODE_ENV } = process.env;
+// const { NODE_ENV } = process.env;
+const NODE_ENV = process.env.NODE_ENV;
 const isDev = NODE_ENV === 'development';
 
 const needTransformMethods = ['post', 'POST', 'put', 'PUT', 'delete', 'DELETE'];

@@ -1,6 +1,6 @@
-<script>
-import { h } from '@vue/composition-api';
-import IEmpty from '../empty';
+<script lang="jsx">
+// import { h } from '@vue/composition-api';
+import IEmpty from '../empty/index.vue';
 
 const noop = () => {};
 export function getPropByPath(obj, path, strict) {
@@ -73,7 +73,7 @@ export default {
       return column[this.rowKey] || column.key || column.dataIndex;
     },
   },
-  render() {
+  render(h) {
     const isEmpty = !this.data || this.data.length < 1;
     return (
       <div class={{ 'table-box': true, empty: isEmpty }}>
@@ -121,6 +121,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '@/styles/common/var.less';
 .table-box {
   // width: calc(100% - 30px);
   // margin: 0 auto 20px;

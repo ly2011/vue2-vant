@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "cross-env environment=local vue-cli-service serve",
-    "build": "cross-env environment=local vue-cli-service build",
-    "lint": "vue-cli-service lint ./src",
+    "dev": "cross-env environment=local rspack serve",
+    "build": "cross-env environment=local rspack build",
     "commit": "git-cz",
     "lint:fix": "vue-cli-service lint --fix --ext .js,.jsx,.vue ./src",
     "preinstall": "npx only-allow yarn",
@@ -35,16 +34,18 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
-    "@vue/cli-plugin-babel": "~5.0.3",
+    "@rspack/cli": "^0.2.8",
+    "@rspack/plugin-node-polyfill": "^0.2.8",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
+    "@vue/babel-preset-jsx": "^1.4.0",
+    "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "~5.0.3",
-    "@vue/cli-service": "~5.0.3",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/runtime-dom": "^3.2.31",
     "babel-plugin-import": "^1.12.0",
-    "babel-plugin-lodash": "^3.3.4",
     "commitizen": "^4.2.4",
-    "copy-webpack-plugin": "^5.1.1",
     "cross-env": "^6.0.3",
+    "css-loader": "^6.8.1",
     "cssnano": "^4.1.10",
     "cssnano-preset-advanced": "^4.0.7",
     "eslint": "^7.32.0",
@@ -55,10 +56,9 @@
     "eslint-plugin-vue": "^8.0.3",
     "gh-pages": "^3.2.3",
     "git-cz": "^4.8.0",
-    "less": "^3.9.0",
-    "less-loader": "^5.0.0",
+    "less": "^4.1.3",
+    "less-loader": "^11.1.3",
     "lint-staged": "^9.5.0",
-    "lodash-webpack-plugin": "^0.11.5",
     "postcss-aspect-ratio-mini": "^1.0.1",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^12.0.1",
@@ -68,15 +68,8 @@
     "postcss-write-svg": "^3.0.1",
     "prettier": "^2.4.1",
     "rimraf": "^2.6.3",
-    "speed-measure-webpack-plugin": "^1.5.0",
-    "style-resources-loader": "^1.2.1",
-    "unplugin-auto-import": "^0.6.6",
-    "unplugin-vue-components": "^0.18.0",
-    "unplugin-vue2-script-setup": "^0.10.0",
-    "vconsole-webpack-plugin": "^1.5.1",
-    "vue-cli-plugin-style-resources-loader": "~0.1.4",
-    "vue-template-compiler": "^2.6.11",
-    "zip-webpack-plugin": "^3.0.0"
+    "vue-loader": "^15.10.1",
+    "vue-style-loader": "^4.1.3"
   },
   "config": {
     "commitizen": {
@@ -88,8 +81,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,vue}": [
-      "prettier --write",
-      "yarn lint:fix"
+      "prettier --write"
     ]
   }
 }

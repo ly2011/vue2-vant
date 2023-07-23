@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import { Toast } from 'vant';
-import App from './App';
+import App from './App.vue';
 import './lib';
 import router from './router';
 import store from './store';

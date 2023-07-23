@@ -1,4 +1,4 @@
-import { getDictLabel } from 'utils/dict';
+import { getDictLabel } from 'utils/dict.js';
 import { mapGetters } from 'vuex';
 import * as echarts from 'echarts';
 import _ from 'lodash';
