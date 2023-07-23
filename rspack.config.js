@@ -1,6 +1,25 @@
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const NodePolyfill = require('@rspack/plugin-node-polyfill');
+// const html = require('@rspack/plugin-html').default;
+const env = process.env.NODE_ENV || 'development';
+const dotEnvFiles = env === 'development' ? ['.env.development'] : ['.env.production'];
+
+dotEnvFiles.forEach(doteEnvFile => {
+  const myEnv = require('dotenv').config({ path: doteEnvFile });
+  require('dotenv-expand').expand(myEnv);
+  // console.log(process.env);
+});
+// const VUE_APP = /^VUE_APP_/i;
+
+const filterEnv = {};
+const define = Object.keys(process.env)
+  // .filter(key => VUE_APP.test(key))
+  .reduce((env, key) => {
+    filterEnv[key] = process.env[key];
+    env[`process.env.${key}`] = JSON.stringify(process.env[key]);
+    return env;
+  }, {});
 
 const resolve = dir => path.join(__dirname, dir);
 
@@ -13,15 +32,31 @@ const config = {
   builtins: {
     html: [
       {
-        template: './index.html',
+        template: './public/index.html',
+        title: '基于vue2的移动端模板',
       },
     ],
     define: {
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      'process.env.environment': JSON.stringify(process.env.environment),
-      'process.env.NODE_DEBUG': JSON.stringify(false),
-      'process.env.BASE_URL': JSON.stringify(process.env.BASE_URL),
+      ...define,
+      'import.meta.env && import.meta.env.MODE': JSON.stringify(process.env.NODE_ENV || 'production'),
+      'process.env': JSON.stringify(filterEnv),
     },
+    copy: {
+      patterns: [
+        {
+          from: 'public',
+          globOptions: {
+            ignore: ['**/index.html'],
+          },
+        },
+      ],
+    },
+    // define: {
+    //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    //   'process.env.environment': JSON.stringify(process.env.environment),
+    //   'process.env.NODE_DEBUG': JSON.stringify(false),
+    //   'process.env.BASE_URL': JSON.stringify(process.env.BASE_URL),
+    // },
   },
   devServer: {
     historyApiFallback: true,
