@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-// import { importAllRouter } from 'utils/businessCommonUtils';
+import { importAllRouter } from 'utils/businessCommonUtils';
 import Home from 'views/home.vue';
 
-// const cacheRouters = importAllRouter(require.context('../views', true, /router\.js$/));
+const cacheRouters = importAllRouter(require.context('../views', true, /router\.js$/));
+
+console.warn(cacheRouters, 'cacheRouters =======>');
 
 // TODO 阻止重复点击报错
 const originalPush = Router.prototype.push;
@@ -47,13 +49,13 @@ export default new Router({
       component: () => import('@/views/composition-api/topic-detail/index.vue'),
       meta: { title: 'topic-detail' },
     },
-    // {
-    //   path: '/options-api/basic-form',
-    //   name: 'options-api-basic-form',
-    //   component: () => import('@/views/options-api/basic-form'),
-    //   meta: { title: 'options-api-basic-form', tabbar: true },
-    // },
-    // ...cacheRouters,
+    {
+      path: '/options-api/basic-form',
+      name: 'options-api-basic-form',
+      component: () => import('@/views/options-api/basic-form'),
+      meta: { title: 'options-api-basic-form', tabbar: true },
+    },
+    ...cacheRouters,
     {
       path: '*',
       redirect: {
