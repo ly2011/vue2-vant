@@ -23,6 +23,24 @@ const define = Object.keys(process.env)
 
 const resolve = dir => path.join(__dirname, dir);
 
+// const postcssOptions = {
+//   // ident: 'postcss',
+//   // config: false,
+//   plugins: [
+//     'postcss-flexbugs-fixes',
+//     ['postcss-preset-env', { autoprefixer: { flexbox: 'no-2009' }, stage: 3 }],
+//     require('postcss-px-to-viewport')({
+//       viewportWidth: 750,
+//       viewportHeight: 1334,
+//       unitPrecision: 5,
+//       viewportUnit: 'vw',
+//       selectorBlackList: ['.ignore', '.hairlines', 'van-circle__layer'],
+//       minPixelValue: 1,
+//       mediaQuery: false,
+//     }),
+//   ],
+// };
+
 /** @type {import('@rspack/cli').Configuration} */
 const config = {
   context: __dirname,
@@ -37,6 +55,7 @@ const config = {
       },
     ],
     define: {
+      targets: ['es2022'],
       ...define,
       'import.meta.env && import.meta.env.MODE': JSON.stringify(process.env.NODE_ENV || 'production'),
       'process.env': JSON.stringify(filterEnv),
@@ -51,6 +70,13 @@ const config = {
         },
       ],
     },
+    pluginImport: [
+      {
+        libraryName: 'vant',
+        libraryDirectory: 'es',
+        style: true,
+      },
+    ],
     // define: {
     //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     //   'process.env.environment': JSON.stringify(process.env.environment),
@@ -76,6 +102,7 @@ const config = {
       services: resolve('src/services'),
       store: resolve('src/store'),
     },
+    extensions: ['.js', '.jsx', '.jsx', '.tsx', '.vue', '.json', '.mjs'],
   },
   plugins: [new VueLoaderPlugin(), new NodePolyfill()],
   module: {
@@ -86,12 +113,31 @@ const config = {
       },
       {
         test: /\.less$/,
-        use: ['vue-style-loader', 'css-loader', 'less-loader'],
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              // postcssOptions,
+            },
+          },
+          'less-loader',
+        ],
         type: 'javascript/auto',
       },
       {
         test: /\.css$/,
-        use: ['vue-style-loader', 'css-loader'],
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              // postcssOptions,
+            },
+          },
+        ],
         type: 'javascript/auto',
       },
       {
@@ -112,13 +158,18 @@ const config = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@vue/babel-preset-jsx'],
+              // presets: ['@vue/babel-preset-jsx'],
               // plugins: ['@vue/babel-plugin-jsx'],
             },
           },
         ],
       },
     ],
+  },
+  optimization: {
+    sideEffects: false,
+    moduleIds: 'named',
+    minimize: false,
   },
 };
 module.exports = config;

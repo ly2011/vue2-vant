@@ -1,6 +1,6 @@
 import components from './components';
-import IForm from './form';
-import IFormItem from './form-item';
+import IForm from './form.vue';
+import IFormItem from './form-item.vue';
 
 const allRestComponents = [IForm, IFormItem];
 const restComponents = {};

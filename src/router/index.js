@@ -29,12 +29,12 @@ export default new Router({
       component: () => import('@/views/test.vue'),
       meta: { title: 'test' },
     },
-    // {
-    //   path: '/composition-api/basic-form',
-    //   name: 'composition-api-basic-form',
-    //   component: () => import('@/views/composition-api/basic-form'),
-    //   meta: { title: 'composition-api-basic-form', tabbar: true },
-    // },
+    {
+      path: '/composition-api/basic-form',
+      name: 'composition-api-basic-form',
+      component: () => import('@/views/composition-api/basic-form/index.vue'),
+      meta: { title: 'composition-api-basic-form', tabbar: true },
+    },
     {
       path: '/topic-list',
       name: 'topic-list',

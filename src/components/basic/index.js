@@ -4,7 +4,7 @@
 // import INavBar from './nav-bar'
 // import IPopup from './popup'
 // import ITable from './table'
-import { formComponents } from './form';
+import { formComponents } from './form/index.js';
 
 // const allComponents = [
 //   // IEmpty,

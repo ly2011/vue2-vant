@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>首页</h3>
+    <h3 class="title">首页</h3>
     <hello-world v-model="msg" />
     <!-- <counter @update="updateCounter" :msg="msg" /> -->
   </div>
@@ -25,4 +25,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less">
+@import '@/styles/common/var.less';
+.title {
+  color: @red;
+  font-size: @font-size-normal;
+}
+</style>

@@ -29,7 +29,7 @@
 
 <script>
 import { isFunction } from 'lodash';
-import IFormItem from './form-item';
+import IFormItem from './form-item.vue';
 
 const COMPONENT_NAME = 'i-form';
 export default {

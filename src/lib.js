@@ -14,7 +14,7 @@ import ITable from 'components/basic/table/index.vue';
 import ITabbar from 'components/basic/tabbar/index.vue';
 
 // 导入封装好的全部公共 UI组件
-// import './components/basic/install';
+import './components/basic/install';
 
 // Vue.prototype.$config = config;
 // Vue.prototype.$nativeApi = nativeApi;
