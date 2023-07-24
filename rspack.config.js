@@ -23,6 +23,13 @@ const define = Object.keys(process.env)
 
 const resolve = dir => path.join(__dirname, dir);
 
+const InjectGlobalStyles = {
+  loader: 'style-resources-loader',
+  options: {
+    patterns: [resolve('src/styles/common/var.less')],
+  },
+};
+
 // const postcssOptions = {
 //   // ident: 'postcss',
 //   // config: false,
@@ -123,9 +130,11 @@ const config = {
             },
           },
           'less-loader',
+          InjectGlobalStyles,
         ],
         type: 'javascript/auto',
       },
+      // css文件不可引入InjectGlobalStyles，会解析报错(vant css 注释识别错误)！！！
       {
         test: /\.css$/,
         use: [

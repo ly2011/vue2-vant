@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="less">
-@import '@/styles/common/var.less';
+// @import '@/styles/common/var.less';
 .title {
   color: @red;
   font-size: @font-size-normal;

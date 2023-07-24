@@ -191,7 +191,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-@import '@/styles/common/var.less';
+// @import '@/styles/common/var.less';
 .page {
   height: calc(~'100vh - @{tabbar-height} * 2');
   overflow-y: auto;
